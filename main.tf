@@ -3,17 +3,9 @@ locals {
 }
 
 resource "null_resource" "SSHDir" {
-  triggers = {
-    key_dir = local.key_dir
-  }
 
   provisioner "local-exec" {
-    command = "mkdir -p ${self.triggers.key_dir}"
-  }
-
-  provisioner "local-exec" {
-    when    = destroy
-    command = "rm -rf ${self.triggers.key_dir}"
+    command = "mkdir -p ${local.key_dir}"
   }
 }
 
@@ -29,4 +21,21 @@ resource "null_resource" "SSHKey" {
       fi
     EOF
   }
+}
+
+# read file data
+data "local_file" "public_key"{
+  depends_on = [null_resource.SSHKey]
+  filename = "${local.key_dir}/${var.key_pair_name}.pub"
+}
+
+# aws key pair name
+resource "aws_key_pair" "EC2_Key"{
+  depends_on = [null_resource.SSHKey]
+  key_name = var.aws_key_pair
+  public_key = data.local_file.public_key.content
+}
+
+resource "aws_security_group" "Prod_Security_Group"{
+  
 }

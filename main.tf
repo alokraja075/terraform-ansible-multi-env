@@ -65,7 +65,7 @@ resource "aws_instance" "example" {
   key_name = var.key_pair_name
   vpc_security_group_ids  = [aws_security_group.Test_Security_Group]
   ebs_block_device {
-    device_name = "/dev/sdf"
+    device_name = "/dev/sdh"
     volume_size = 20
     volume_type = "gp3"
     delete_on_termination = true

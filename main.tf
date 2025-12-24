@@ -36,7 +36,7 @@ resource "aws_key_pair" "EC2_Key"{
   public_key = data.local_file.public_key.content
 }
 
-resource "aws_security_group" "Prod_Security_Group"{
+resource "aws_security_group" "Test_Security_Group"{
   name = var.security_group_name
   description = "Prod Security Group"
 }
@@ -47,7 +47,7 @@ resource "aws_security_group_rule" "ingress_rules" {
   to_port           = each.value.to_port
   protocol          = each.value.protocol
   cidr_blocks       = each.value.cidr_blocks
-  security_group_id = aws_security_group.Prod_Security_Group.id
+  security_group_id = aws_security_group.Test_Security_Group.id
 }
 
 data "aws_ami" "ubuntu" {
@@ -63,10 +63,10 @@ resource "aws_instance" "example" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
   key_name = var.key_pair_name
-  vpc_security_group_ids  = [aws_security_group.Prod_Security_Group]
+  vpc_security_group_ids  = [aws_security_group.Test_Security_Group]
   ebs_block_device {
     device_name = "/dev/sdf"
-    volume_size = 10
+    volume_size = 20
     volume_type = "gp3"
     delete_on_termination = true
   }

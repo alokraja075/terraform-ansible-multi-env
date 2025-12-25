@@ -35,3 +35,24 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+
+# Ignore AWS CLI artifacts
+awscliv2.zip
+aws/
+
+# Ignore Ansible artifacts
+*.retry
+.ansible/
+roles/*/
+
+# Ignore IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Ignore OS specific files
+Thumbs.db

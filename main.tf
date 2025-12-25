@@ -50,6 +50,16 @@ resource "aws_security_group_rule" "ingress_rules" {
   security_group_id = aws_security_group.Test_Security_Group.id
 }
 
+resource "aws_security_group_rule" "egress_rule" {
+  for_each = var.egress_rules
+  type              = "egress"
+  from_port         = each.value.from_port
+  to_port           = each.value.to_port
+  protocol          = each.value.protocol
+  cidr_blocks       = each.value.cidr_blocks
+  security_group_id = aws_security_group.Prod_Security_Group.id
+}
+
 data "aws_ami" "ubuntu" {
   most_recent = true
   owners      = ["099720109477"] # Canonical
@@ -65,11 +75,12 @@ resource "aws_instance" "example" {
   key_name = var.key_pair_name
   vpc_security_group_ids  = [aws_security_group.Test_Security_Group]
   ebs_block_device {
-    device_name = "/dev/sdh"
-    volume_size = 20
+    device_name = "/dev/sdf"
+    volume_size = 10
     volume_type = "gp3"
     delete_on_termination = true
   }
+  user_data  = file("install_server.sh")
   tags = {
     Name = "HelloWorld"
   }

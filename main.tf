@@ -57,7 +57,7 @@ resource "aws_security_group_rule" "egress_rule" {
   to_port           = each.value.to_port
   protocol          = each.value.protocol
   cidr_blocks       = each.value.cidr_blocks
-  security_group_id = aws_security_group.Prod_Security_Group.id
+  security_group_id = aws_security_group.Test_Security_Group.id
 }
 
 data "aws_ami" "ubuntu" {

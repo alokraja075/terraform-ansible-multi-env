@@ -73,7 +73,7 @@ resource "aws_instance" "example" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
   key_name = var.key_pair_name
-  vpc_security_group_ids  = [aws_security_group.Test_Security_Group]
+  vpc_security_group_ids  = [aws_security_group.Test_Security_Group.id]
   ebs_block_device {
     device_name = "/dev/sdf"
     volume_size = 10

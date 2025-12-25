@@ -29,7 +29,7 @@ cat <<EOF > /var/www/html/index.html
     <title>Terraform EC2</title>
 </head>
 <body>
-    <h1>Hello from Terraform - Test</h1>
+    <h1>Hello from Terraform - Prod</h1>
     <p>Nginx installed using Terraform</p>
 </body>
 </html>

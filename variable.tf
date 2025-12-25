@@ -5,11 +5,11 @@ variable "region" {
 
 variable "key_pair_name" {
   type    = string
-  default = "ProdKP"
+  default = "TestKP"
 }
 variable "security_group_name"{
   type    = string
-  default = "Prod_SG"
+  default = "Test_SG"
 }
 variable "ingress_rules"{
   type = map(object({

@@ -1,6 +1,6 @@
+---
 - name: Configure EC2 instances with Ansible
   hosts: ec2_instances
-  become: no
   gather_facts: no
   
   vars:
@@ -8,19 +8,16 @@
     env_name: "production"
   
   pre_tasks:
-    - name: Wait for SSH to be ready
-      wait_for_connection:
-        timeout: 120
-      become: false
-
-    - name: Install Python3 if needed
-      raw: sudo apt-get update -y && sudo apt-get install -y python3-minimal
+    - name: Upgrade Python to 3.9+
+      raw: sudo apt-get update -y && sudo apt-get install -y python3.9 python3.9-dev python3.9-venv || true
       changed_when: false
-      ignore_errors: yes
+    
+    - name: Set python3.9 as default
+      raw: sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1 || true
+      changed_when: false
     
     - name: Gather facts
       setup:
-      become: false
   
   roles:
     - name: Update system packages

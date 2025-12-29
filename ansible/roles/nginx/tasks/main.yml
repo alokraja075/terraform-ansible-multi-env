@@ -2,7 +2,7 @@
 - name: Install and configure Nginx
   block:
     - name: Install Nginx package
-      raw: sudo apt-get install -y nginx
+      raw: sudo apt-get install -y nginx || true
       changed_when: false
 
     - name: Start Nginx service
@@ -75,6 +75,10 @@
       changed_when: false
 
     - name: Verify Nginx is running
-      raw: sudo systemctl status nginx
+      raw: sudo systemctl is-active nginx
       changed_when: false
-      ignore_errors: yes
+      register: nginx_status
+
+    - name: Display Nginx status
+      debug:
+        msg: "Nginx status: {{ nginx_status.stdout_lines | default(['unknown']) }}"

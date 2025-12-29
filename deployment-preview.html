@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Terraform + Ansible Deployment Success</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+        .success-badge {
+            background: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .info-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        .info-card h3 {
+            margin-top: 0;
+            color: #667eea;
+            font-size: 1.1em;
+        }
+        .info-card p {
+            margin: 5px 0;
+            color: #555;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .code-block .command {
+            color: #50fa7b;
+        }
+        .code-block .output {
+            color: #8be9fd;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .feature {
+            background: #e3f2fd;
+            padding: 10px 15px;
+            border-radius: 8px;
+            color: #1976d2;
+            font-weight: 500;
+        }
+        .center {
+            text-align: center;
+        }
+        .footer {
+            text-align: center;
+            color: #999;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Terraform + Ansible Deployment</h1>
+        <div class="center">
+            <div class="success-badge">✅ DEPLOYMENT SUCCESSFUL</div>
+        </div>
+        <p class="subtitle">Infrastructure as Code - Multi-Environment EC2 Deployment</p>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>📦 Instance Details</h3>
+                <p>ID: i-0be26bb0ec04e8b2c</p>
+                <p>Type: t3.micro</p>
+                <p>Region: us-east-1</p>
+            </div>
+
+            <div class="info-card">
+                <h3>🌐 Network Access</h3>
+                <p>IP: 44.204.246.218</p>
+                <p>DNS: ec2-44-204-246-218</p>
+                <p>.compute-1.amazonaws.com</p>
+            </div>
+
+            <div class="info-card">
+                <h3>🔐 Security</h3>
+                <p>Key Pair: TestKP</p>
+                <p>Security Group: test-app-sg</p>
+                <p>Ports: SSH, HTTP, HTTPS</p>
+            </div>
+
+            <div class="info-card">
+                <h3>⚙️ Configuration</h3>
+                <p>Nginx: ✅ Running</p>
+                <p>Python: 3.9+</p>
+                <p>OS: Ubuntu 20.04 LTS</p>
+            </div>
+        </div>
+
+        <h2>Features Deployed</h2>
+        <div class="features">
+            <div class="feature">✅ Modular Terraform EC2 Module</div>
+            <div class="feature">✅ Automated SSH Key Generation</div>
+            <div class="feature">✅ Dynamic Security Groups</div>
+            <div class="feature">✅ Ansible Configuration Management</div>
+            <div class="feature">✅ System Updates & Packages</div>
+            <div class="feature">✅ Nginx Web Server</div>
+            <div class="feature">✅ Custom HTML Deployment</div>
+            <div class="feature">✅ Multi-Environment Support</div>
+        </div>
+
+        <h2>Quick Access Commands</h2>
+        <div class="code-block">
+<span class="command"># Access Website</span>
+curl http://ec2-44-204-246-218.compute-1.amazonaws.com/
+
+<span class="command"># SSH into Instance</span>
+ssh -i ./key/TestKP ubuntu@ec2-44-204-246-218.compute-1.amazonaws.com
+
+<span class="command"># Check Nginx Status</span>
+sudo systemctl status nginx
+
+<span class="command"># View Terraform Outputs</span>
+terraform output
+        </div>
+
+        <h2>Deployment Timeline</h2>
+        <div class="code-block">
+<span class="output">1. Terraform Init & Plan</span>      [✅ 10s]
+<span class="output">2. Infrastructure Creation</span>    [✅ 30s]
+<span class="output">3. SSH Key Generation</span>         [✅ 5s]
+<span class="output">4. Security Group Setup</span>       [✅ 10s]
+<span class="output">5. Ansible Inventory Gen</span>      [✅ 2s]
+<span class="output">6. Python Upgrade</span>             [✅ 45s]
+<span class="output">7. System Updates</span>             [✅ 60s]
+<span class="output">8. Nginx Installation</span>         [✅ 30s]
+<span class="output">9. Custom Page Deploy</span>         [✅ 5s]
+<span class="output">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+<span class="output">Total Deployment Time:</span>        [✅ ~3 minutes]
+        </div>
+
+        <div class="footer">
+            <p><strong>Managed with Infrastructure as Code</strong></p>
+            <p>Terraform v1.0+ | Ansible v2.10+ | AWS EC2 | Ubuntu 20.04 LTS</p>
+            <p>Repository: github.com/alokraja075/terraform-ansible-multi-env</p>
+        </div>
+    </div>
+</body>
+</html>

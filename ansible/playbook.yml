@@ -1,22 +1,26 @@
----
 - name: Configure EC2 instances with Ansible
   hosts: ec2_instances
-  become: yes
+  become: no
   gather_facts: no
   
   vars:
     nginx_version: "latest"
-    environment: "production"
+    env_name: "production"
   
   pre_tasks:
-    - name: Wait for system to be ready
-      raw: sleep 10
-      changed_when: false
+    - name: Wait for SSH to be ready
+      wait_for_connection:
+        timeout: 120
+      become: false
 
     - name: Install Python3 if needed
       raw: sudo apt-get update -y && sudo apt-get install -y python3-minimal
       changed_when: false
       ignore_errors: yes
+    
+    - name: Gather facts
+      setup:
+      become: false
   
   roles:
     - name: Update system packages

@@ -1,0 +1,80 @@
+---
+- name: Install and configure Nginx
+  block:
+    - name: Install Nginx package
+      raw: sudo apt-get install -y nginx
+      changed_when: false
+
+    - name: Start Nginx service
+      raw: sudo systemctl start nginx
+      changed_when: false
+
+    - name: Enable Nginx service
+      raw: sudo systemctl enable nginx
+      changed_when: false
+
+    - name: Create web root directory
+      raw: sudo mkdir -p /var/www/html && sudo chown www-data:www-data /var/www/html
+      changed_when: false
+
+    - name: Deploy custom index.html
+      raw: |
+        sudo tee /var/www/html/index.html > /dev/null << 'INDEXEOF'
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Terraform EC2 - Nginx</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 20px;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    min-height: 100vh;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .container {
+                    background: white;
+                    border-radius: 10px;
+                    padding: 40px;
+                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+                    text-align: center;
+                    max-width: 600px;
+                }
+                h1 {
+                    color: #333;
+                    margin-bottom: 10px;
+                }
+                p {
+                    color: #666;
+                    font-size: 16px;
+                    margin: 10px 0;
+                }
+                .success {
+                    color: #27ae60;
+                    font-weight: bold;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h1>Terraform EC2 Instance</h1>
+                <p class="success">Nginx is running successfully!</p>
+                <p>Deployed with Terraform and configured with Ansible</p>
+                <p style="margin-top: 30px; color: #999; font-size: 12px;">
+                    Managed with Infrastructure as Code (IaC)
+                </p>
+            </div>
+        </body>
+        </html>
+        INDEXEOF
+      changed_when: false
+
+    - name: Verify Nginx is running
+      raw: sudo systemctl status nginx
+      changed_when: false
+      ignore_errors: yes

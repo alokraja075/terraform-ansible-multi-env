@@ -10,7 +10,6 @@ resource "null_resource" "SSHDir" {
 }
 
 resource "null_resource" "SSHKey" {
-
   depends_on = [null_resource.SSHDir]
 
   provisioner "local-exec" {

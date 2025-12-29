@@ -1,0 +1,22 @@
+---
+- name: Update and upgrade system packages
+  block:
+    - name: Update apt cache
+      raw: sudo apt-get update -y
+      changed_when: false
+
+    - name: Upgrade all packages
+      raw: sudo apt-get upgrade -y
+      changed_when: false
+
+    - name: Install required packages
+      raw: sudo apt-get install -y curl unzip wget git vim
+      changed_when: false
+
+    - name: Remove useless packages
+      raw: sudo apt-get autoclean -y
+      changed_when: false
+
+    - name: Remove dependencies that are no longer needed
+      raw: sudo apt-get autoremove -y
+      changed_when: false

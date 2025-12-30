@@ -200,9 +200,7 @@ ssh -i key/TestKP ubuntu@<instance-dns> 'sudo systemctl status nginx'
 
 Contributions welcome! Please submit a Pull Request.
 
-## 📝 License
 
-MIT License - see [LICENSE](LICENSE) file
 
 ## 👤 Author
 

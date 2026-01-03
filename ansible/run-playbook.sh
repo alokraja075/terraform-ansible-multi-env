@@ -19,8 +19,8 @@ fi
 
 # Check if instances are reachable
 echo ""
-echo "Checking connectivity to instances..."
-ansible all -i "$SCRIPT_DIR/inventory/hosts.ini" -m ping
+echo "Checking connectivity to instances (raw ping without python)..."
+ansible all -i "$SCRIPT_DIR/inventory/hosts.ini" -m raw -a "echo ansible-raw-ok"
 
 # Run the playbook
 echo ""

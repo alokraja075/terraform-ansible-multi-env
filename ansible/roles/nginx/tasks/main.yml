@@ -1,12 +1,22 @@
 ---
 - name: Install and configure Nginx
   block:
-    - name: Install Nginx package
-      apt:
-        name: nginx
-        state: present
-        update_cache: yes
-        cache_valid_time: 3600
+    - name: Disable command-not-found apt hook (missing apt_pkg workaround)
+      copy:
+        dest: /etc/apt/apt.conf.d/99disable-cnf
+        content: |
+          DPkg::Post-Invoke { "if false; then /usr/lib/cnf-update-db; fi"; };
+          APT::Update::Post-Invoke-Success { "if false; then /usr/lib/cnf-update-db; fi"; };
+        owner: root
+        group: root
+        mode: "0644"
+      become: yes
+
+    - name: Install Nginx package (apt-get fallback to avoid python-apt)
+      shell: sudo apt-get install -y nginx
+      register: nginx_install
+      changed_when: "'Setting up nginx' in nginx_install.stdout or 'Preparing to unpack' in nginx_install.stdout"
+      failed_when: nginx_install.rc != 0
       become: yes
 
     - name: Ensure web root exists

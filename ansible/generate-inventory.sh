@@ -27,7 +27,7 @@ ec2-instance-1 ansible_host=$INSTANCE_DNS
 [ec2_instances:vars]
 ansible_user=ubuntu
 ansible_python_interpreter=/usr/bin/python3
-ansible_ssh_private_key_file=../key/TestKP
+ansible_ssh_private_key_file=../key/MyEC2Key
 EOF
 
 echo "✓ Inventory generated successfully!"
